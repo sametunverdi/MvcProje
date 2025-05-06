@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    @*bu satır sweet alert için yazıldı*@
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default" style="background-color: #001f3f; border-color: #001f3f;">
+        @*navbara renk verdim*@
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Elsyian Home</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/Kategori/Index/">Kategoriler</a></li>
+                <li><a href="/Urun/Index/">Ürünler</a></li>
+                <li><a href="/Musteriler/Index/">Müşteriler</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @*bu satır sweetalert için yazıldı*@
+
+</body>
+</html>
+
+<script>
+    $(document).on("click", ".btn-delete", function (e) {
+        e.preventDefault(); // linke direkt gitmeyi engelle
+
+        var url = $(this).attr("href"); // linkin hedefini al
+
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu ürünü silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'Vazgeç'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+    });@*burası sweetalert silme ekranı*@
+</script>
+
