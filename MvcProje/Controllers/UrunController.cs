@@ -45,5 +45,42 @@ namespace MvcProje.Controllers
             return RedirectToAction("Index");
         }
         //yukarıdaki sil kod bloğu sweetalert ile silme işlemini gerçekleştiriyor
+
+        public JsonResult UrunGetir(int id)
+        {
+            var urun = db.TBLURUNLER.Find(id);
+            if (urun != null)
+            {
+                return Json(new
+                {
+                    URUNID = urun.URUNID,
+                    URUNAD = urun.URUNAD,
+                    MARKA = urun.MARKA,
+                    URUNKATEGORI = urun.URUNKATEGORI,
+                    FIYAT = urun.FIYAT,
+                    STOK = urun.STOK,
+                }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+        //musteri isim ve soy isimleri getiriyor kutulara getirmeyi sağlıyor
+
+        [HttpPost]
+        public ActionResult UrunGuncelle(TBLURUNLER urun)
+        {
+            var urn = db.TBLURUNLER.Find(urun.URUNID);
+            if (urn != null)
+            {
+                urn.URUNAD = urun.URUNAD;
+                urn.MARKA = urun.MARKA;
+                urn.URUNKATEGORI = urun.URUNKATEGORI;
+                urn.FIYAT = urun.FIYAT;
+                urn.STOK = urun.STOK;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+        //musteri ve soy isimlerini  güncelleme işlemi yapıyoruz 
     }
 }

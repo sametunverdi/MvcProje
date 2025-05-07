@@ -29,8 +29,12 @@
                 <td>@urn.STOK</td>
                 <td>
                     <a href="/URUN/SIL/@urn.URUNID" class="btn btn-danger btn-delete">Sil</a>
-                </td>@*sweetalert yapmak için mainlayoutten burdan çekiyorum*@
-                <td><a href="/URUN/GUNCELLE/@urn.URUNID" class="btn btn-success">Güncelle</a></td>
+                </td>
+                @*sweetalert yapmak için mainlayoutten burdan çekiyorum*@
+                <td>
+                    <a href="#" class="btn btn-success btn-update" data-id="@urn.URUNID">Güncelle</a>
+                </td>
+                @*güncelleme butonu*@
             </tr>
         }
     </tbody>
@@ -77,6 +81,45 @@
     </div>
 </div>
 
+
+<!-- Güncelleme Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Kategori Güncelle</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateProductForm">
+                    <input type="hidden" id="URUNID" name="URUNID" />
+                    <div class="form-group">
+                        <label>Ürün Adı</label>
+                        <input type="text" id="URUNAD" name="URUNAD" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Marka</label>
+                        <input type="text" id="MARKA" name="MARKA" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Ürün Kategori ID</label>
+                        <input type="text" id="URUNKATEGORI" name="URUNKATEGORI" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Fiyat</label>
+                        <input type="text" id="FIYAT" name="FIYAT" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input type="text" id="STOK" name="STOK" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $("#addProductForm").submit(function (e) {
         e.preventDefault();
@@ -107,6 +150,54 @@
         });
     });
     @* burda ekleme işlemi yapıyoruz*@
+
+    $(document).on("click", ".btn-update", function () {
+        var id = $(this).data("id");
+
+        $.ajax({
+            url: '/Urun/UrunGetir',
+            type: 'GET',
+            data: { id: id },
+            success: function (data) {
+                $("#URUNID").val(data.URUNID);
+                $("#URUNAD").val(data.URUNAD);
+                $("#MARKA").val(data.MARKA);
+                $("#URUNKATEGORI").val(data.URUNKATEGORI);
+                $("#FIYAT").val(data.FIYAT);
+                $("#STOK").val(data.STOK);
+                $("#updateModal").modal("show");
+            }
+        });
+    });
+    @* burda güncelleme işlemi yapılırken verileri inputlara çekiyor*@
+
+    $("#updateProductForm").submit(function (e) {
+        e.preventDefault();
+
+        var formData = {
+            URUNID: $("#URUNID").val(),
+            URUNAD: $("#URUNAD").val(),
+            MARKA: $("#MARKA").val(),
+            URUNKATEGORI: $("#URUNKATEGORI").val(),
+            FIYAT: $("#FIYAT").val(),
+            STOK : $("#STOK").val(),
+        };
+
+        $.ajax({
+            url: '/Urun/UrunGuncelle',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                if (response.success) {
+                    $("#updateModal").modal('hide');
+                    location.reload();
+                } else {
+                    alert("Güncelleme başarısız.");
+                }
+            }
+        });
+    });
+    @* Formu Submit Edince Güncelleme Yapsın(güncelleme işlemini gerçekleştiriyor*@
 </script>
 
 

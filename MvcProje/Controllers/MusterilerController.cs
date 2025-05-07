@@ -44,6 +44,37 @@ namespace MvcProje.Controllers
             return RedirectToAction("Index");
         }
         //yukarıdaki sil kod bloğu sweetalert ile silme işlemini gerçekleştiriyor
+
+        public JsonResult MusteriGetir(int id)
+        {
+            var musteri = db.TBLMUSTERILER.Find(id);
+            if (musteri != null)
+            {
+                return Json(new
+                {
+                    MUSTERIID = musteri.MUSTERIID,
+                    MUSTERIAD = musteri.MUSTERIAD,
+                    MUSTERISOYAD = musteri.MUSTERISOYAD,
+                }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+        //musteri isim ve soy isimleri getiriyor kutulara getirmeyi sağlıyor
+
+        [HttpPost]
+        public ActionResult MusteriGuncelle(TBLMUSTERILER musteri)
+        {
+            var mus = db.TBLMUSTERILER.Find(musteri.MUSTERIID);
+            if (mus != null)
+            {
+                mus.MUSTERIAD = musteri.MUSTERIAD;
+                mus.MUSTERISOYAD = musteri.MUSTERISOYAD;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+        //musteri ve soy isimlerini  güncelleme işlemi yapıyoruz 
     }
 
 }
