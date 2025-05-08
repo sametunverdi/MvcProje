@@ -138,6 +138,18 @@
   <data name="Delete" xml:space="preserve">
     <value>DELETE</value>
   </data>
+  <data name="LoginButton" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Invalid login!</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Categories</value>
   </data>
@@ -149,5 +161,8 @@
   </data>
   <data name="UpdateModalTitle" xml:space="preserve">
     <value>Update Category</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

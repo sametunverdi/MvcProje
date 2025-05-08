@@ -12,7 +12,7 @@ namespace MvcProje.Controllers
         {
             if (!string.IsNullOrEmpty(lang))
             {
-                Session["dil"] = lang;
+                Session["lang"] = lang;
             }
 
             // Geldiği sayfaya geri yönlendir

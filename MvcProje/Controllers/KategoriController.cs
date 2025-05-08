@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcProje.Models;
 using MvcProje.Models.Entity;
 
 
@@ -14,8 +15,28 @@ namespace MvcProje.Controllers
         MvcStokEntities db = new MvcStokEntities();
         public ActionResult Index()
         {
-            var degerler = db.TBLKATEGORILER.ToList();
-            return View(degerler);
+            var currentLang = Session["lang"]?.ToString() ?? "tr"; // varsayılan TR
+
+            var kategori = db.TBLKATEGORILER
+                .Select(k => new KategoriViewModel
+                {
+                    KATEGORIID = k.KATEGORIID,
+                    KATEGORIAD = k.KATEGORIAD,  // Türkçe adı alıyoruz
+                    KATEGORI_EN = k.KATEGORI_EN // İngilizce adı alıyoruz
+                })
+                .ToList();
+
+            // Eğer dil İngilizce ise, İngilizce adı göster, değilse Türkçe'yi göster
+            if (currentLang == "en")
+            {
+                kategori.ForEach(k => k.KATEGORIAD = k.KATEGORI_EN);
+            }
+            else
+            {
+                kategori.ForEach(k => k.KATEGORIAD = k.KATEGORIAD);
+            }
+
+            return View(kategori);
         }
 
 

@@ -1,5 +1,5 @@
 ﻿@using MvcProje.Models.Entity
-@model List<TBLKATEGORILER>
+@model List<MvcProje.Models.KategoriViewModel>
 @*yukarıdakileri tanımlaman lazım*@
 @using Resources
 
@@ -7,12 +7,13 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+
 }
 
 <table class="table table-bordered">
     <tr>
         <th>@Labels.CategoryId</th>
-        <th>@Labels.CategoryName</th>    
+        <th>@Labels.CategoryName</th>
         <th>@Labels.Delete</th>
         <th>@Labels.Update</th>
     </tr>
@@ -22,6 +23,7 @@
             <tr>
                 <th>@ktgr.KATEGORIID</th>
                 <td>@ktgr.KATEGORIAD</td>
+
                 <td>
                     <a href="/KATEGORI/SIL/@ktgr.KATEGORIID" class="btn btn-danger btn-delete">@Labels.Delete</a>
                 </td>

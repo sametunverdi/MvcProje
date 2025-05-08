@@ -25,7 +25,7 @@ namespace MvcProje
         {
             if (HttpContext.Current.Session != null)
             {
-                string culture = (string)HttpContext.Current.Session["dil"];
+                string culture = (string)HttpContext.Current.Session["lang"]; // lang yaptım düzeldi unutma
 
                 // Eğer dil seçilmemişse varsayılan olarak Türkçe kullan
                 if (string.IsNullOrEmpty(culture))
