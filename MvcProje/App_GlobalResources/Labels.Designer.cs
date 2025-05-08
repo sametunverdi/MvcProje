@@ -133,6 +133,15 @@ namespace MvcProje.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kategoriler.
+        /// </summary>
+        public static string Categories {
+            get {
+                return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kategori.
         /// </summary>
         public static string Category {
@@ -169,6 +178,42 @@ namespace MvcProje.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vazgeç.
+        /// </summary>
+        public static string ConfirmCancel {
+            get {
+                return ResourceManager.GetString("ConfirmCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emin misiniz?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bu ürünü silmek istediğinize emin misiniz?.
+        /// </summary>
+        public static string ConfirmDeleteMsg {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evet, sil!.
+        /// </summary>
+        public static string ConfirmYes {
+            get {
+                return ResourceManager.GetString("ConfirmYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MÜŞTERİ ID.
         /// </summary>
         public static string CustomerId {
@@ -187,6 +232,15 @@ namespace MvcProje.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Müşteriler.
+        /// </summary>
+        public static string Customers {
+            get {
+                return ResourceManager.GetString("Customers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MÜŞTERİ SOYADI.
         /// </summary>
         public static string CustomerSurname {
@@ -201,6 +255,15 @@ namespace MvcProje.App_GlobalResources {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giriş Yap.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
@@ -228,6 +291,15 @@ namespace MvcProje.App_GlobalResources {
         public static string LoginTitle {
             get {
                 return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Çıkış Yap.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
         
@@ -264,6 +336,15 @@ namespace MvcProje.App_GlobalResources {
         public static string ProductName {
             get {
                 return ResourceManager.GetString("ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürünler.
+        /// </summary>
+        public static string Products {
+            get {
+                return ResourceManager.GetString("Products", resourceCulture);
             }
         }
         

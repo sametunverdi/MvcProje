@@ -141,6 +141,9 @@
   <data name="Brand" xml:space="preserve">
     <value>Marka</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>Kategori</value>
   </data>
@@ -153,17 +156,35 @@
   <data name="CategoryNameEN" xml:space="preserve">
     <value>Kategori Adı (İngilizce)</value>
   </data>
+  <data name="ConfirmCancel" xml:space="preserve">
+    <value>Vazgeç</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Emin misiniz?</value>
+  </data>
+  <data name="ConfirmDeleteMsg" xml:space="preserve">
+    <value>Bu ürünü silmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="ConfirmYes" xml:space="preserve">
+    <value>Evet, sil!</value>
+  </data>
   <data name="CustomerId" xml:space="preserve">
     <value>MÜŞTERİ ID</value>
   </data>
   <data name="CustomerName" xml:space="preserve">
     <value>MÜŞTERİ ADI</value>
   </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Müşteriler</value>
+  </data>
   <data name="CustomerSurname" xml:space="preserve">
     <value>MÜŞTERİ SOYADI</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>SİL</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Giriş Yap</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
     <value>Giriş</value>
@@ -173,6 +194,9 @@
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Giriş Yap</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Çıkış Yap</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Şifre</value>
@@ -185,6 +209,9 @@
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>Ürün Adı</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Ürünler</value>
   </data>
   <data name="ProductTittle" xml:space="preserve">
     <value>Ürünler</value>

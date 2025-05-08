@@ -3,6 +3,8 @@
 }
 @*bunu kullanıcı var mı yok mu diye yaptık sebebi ise giriş yapınca giriş yap butonu çıkış yap butanuna dönüyor*@
 
+@using Resources
+@using System.Web
 @{
     Layout = null;
 }
@@ -31,9 +33,9 @@
                 <a class="navbar-brand" href="#">Elsyian Home</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="/Kategori/Index/">Kategoriler</a></li>
-                <li><a href="/Urun/Index/">Ürünler</a></li>
-                <li><a href="/Musteriler/Index/">Müşteriler</a></li>
+                <li><a href="/Kategori/Index/">@Labels.Categories</a></li>
+                <li><a href="/Urun/Index/">@Labels.Products</a></li>
+                <li><a href="/Musteriler/Index/">@Labels.Customers</a></li>
             </ul>
             <form action="/Dil/Degistir" method="get" style="margin-right: 15px;">
                 <select name="lang" onchange="this.form.submit();" class="form-control" style="display:inline-block; width:auto;">
@@ -45,11 +47,11 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (kullanici != null)
                 {
-                    <li><a href="/Login/Logout"><span class="glyphicon glyphicon-log-out"></span> Çıkış Yap</a></li>
+                    <li><a href="/Login/Logout"><span class="glyphicon glyphicon-log-out"></span> @Labels.Logout</a></li>
                 }
                 else
                 {
-                    <li><a href="/Login/Index"><span class="glyphicon glyphicon-log-in"></span> Giriş Yap</a></li>
+                    <li><a href="/Login/Index"><span class="glyphicon glyphicon-log-in"></span> @Labels.Login</a></li>
                 }
             </ul>
             @*yukarıdaki ul tagları login işlemi içindir*@
@@ -68,25 +70,33 @@
 
 <script>
     $(document).on("click", ".btn-delete", function (e) {
-        e.preventDefault(); // linke direkt gitmeyi engelle
+       e.preventDefault();
+       var url = $(this).attr("href");
 
-        var url = $(this).attr("href"); // linkin hedefini al
+       Swal.fire({
+           title:    deleteTitle,
+           text:     deleteText,
+           icon:     'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#d33',
+           cancelButtonColor: '#3085d6',
+           confirmButtonText: confirmButton,
+           cancelButtonText:  cancelButton
+       }).then((result) => {
+           if (result.isConfirmed) {
+               window.location.href = url;
+           }
+       });
+   });
 
-        Swal.fire({
-            title: 'Emin misiniz?',
-            text: "Bu ürünü silmek istediğinize emin misiniz?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Evet, sil!',
-            cancelButtonText: 'Vazgeç'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = url;
-            }
-        });
-    });@*burası sweetalert silme ekranı*@
+
+       // 👇 Aşağıdaki dört satırı ekle
+       var deleteTitle    = '@Html.Raw(HttpUtility.JavaScriptStringEncode(Labels.ConfirmDelete))';
+       var deleteText     = '@Html.Raw(HttpUtility.JavaScriptStringEncode(Labels.ConfirmDeleteMsg))';
+       var confirmButton  = '@Html.Raw(HttpUtility.JavaScriptStringEncode(Labels.ConfirmYes))';
+       var cancelButton   = '@Html.Raw(HttpUtility.JavaScriptStringEncode(Labels.ConfirmCancel))';
+
+
 
 </script>
 
