@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcProje.Models.Entity;
 
+
 namespace MvcProje.Controllers
 {
     public class KategoriController : Controller
@@ -21,6 +22,7 @@ namespace MvcProje.Controllers
         [HttpPost]
         public ActionResult KategoriEkle(TBLKATEGORILER kategori)
         {
+          
             try
             {
                 db.TBLKATEGORILER.Add(kategori);
@@ -65,6 +67,7 @@ namespace MvcProje.Controllers
         [HttpPost]
         public ActionResult KategoriGuncelle(TBLKATEGORILER kategori)
         {
+            
             var ktg = db.TBLKATEGORILER.Find(kategori.KATEGORIID);
             if (ktg != null)
             {

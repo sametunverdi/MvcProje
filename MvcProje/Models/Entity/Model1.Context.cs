@@ -29,5 +29,6 @@ namespace MvcProje.Models.Entity
         public virtual DbSet<TBLKATEGORILER> TBLKATEGORILER { get; set; }
         public virtual DbSet<TBLMUSTERILER> TBLMUSTERILER { get; set; }
         public virtual DbSet<TBLURUNLER> TBLURUNLER { get; set; }
+        public virtual DbSet<TBLKULLANICILAR> TBLKULLANICILAR { get; set; }
     }
 }

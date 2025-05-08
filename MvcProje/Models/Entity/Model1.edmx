@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -22,6 +22,13 @@
           <Property Name="KATEGORIID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KATEGORIAD" Type="varchar" MaxLength="50" />
           <Property Name="KATEGORI_EN" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLKULLANICILAR">
+          <Key>
+            <PropertyRef Name="KULLANICIAD" />
+          </Key>
+          <Property Name="KULLANICIAD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SIFRE" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TBLMUSTERILER">
           <Key>
@@ -57,6 +64,7 @@
         <EntityContainer Name="MvcStokModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLMUSTERILER" EntityType="Self.TBLMUSTERILER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Self.FK_TBLURUNLER_TBLKATEGORILER">
@@ -64,8 +72,7 @@
             <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MvcStokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -129,7 +136,15 @@
             <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
             <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
           </AssociationSet>
+          <EntitySet Name="TBLKULLANICILAR" EntityType="MvcStokModel.TBLKULLANICILAR" />
         </EntityContainer>
+        <EntityType Name="TBLKULLANICILAR">
+          <Key>
+            <PropertyRef Name="KULLANICIAD" />
+          </Key>
+          <Property Name="KULLANICIAD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -174,6 +189,14 @@
                 <ScalarProperty Name="URUNKATEGORI" ColumnName="URUNKATEGORI" />
                 <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
                 <ScalarProperty Name="STOK" ColumnName="STOK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKULLANICILAR">
+            <EntityTypeMapping TypeName="MvcStokModel.TBLKULLANICILAR">
+              <MappingFragment StoreEntitySet="TBLKULLANICILAR">
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="KULLANICIAD" ColumnName="KULLANICIAD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

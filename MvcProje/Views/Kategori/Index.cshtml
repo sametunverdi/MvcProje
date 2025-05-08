@@ -1,6 +1,7 @@
 ﻿@using MvcProje.Models.Entity
 @model List<TBLKATEGORILER>
 @*yukarıdakileri tanımlaman lazım*@
+@using Resources
 
 
 @{
@@ -10,10 +11,10 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>KATEGORİ ID</th>
-        <th>KATEGORİ ADI</th>
-        <th>SİL</th>
-        <th>GÜNCELLE</th>
+        <th>@Labels.CategoryId</th>
+        <th>@Labels.CategoryName</th>    
+        <th>@Labels.Delete</th>
+        <th>@Labels.Update</th>
     </tr>
     <tbody>
         @foreach (var ktgr in Model)
@@ -22,41 +23,41 @@
                 <th>@ktgr.KATEGORIID</th>
                 <td>@ktgr.KATEGORIAD</td>
                 <td>
-                    <a href="/KATEGORI/SIL/@ktgr.KATEGORIID" class="btn btn-danger btn-delete">Sil</a>
+                    <a href="/KATEGORI/SIL/@ktgr.KATEGORIID" class="btn btn-danger btn-delete">@Labels.Delete</a>
                 </td>
-                @*sweetalert yapmak için mainlayoutten burdan çekiyorum*@
+                @*@sweetalert yapmak için mainlayoutten burdan çekiyorum@*@
                 <td>
-                    <a href="#" class="btn btn-success btn-update" data-id="@ktgr.KATEGORIID">Güncelle</a>
+                    <a href="#" class="btn btn-success btn-update" data-id="@ktgr.KATEGORIID">@Labels.Update</a>
                 </td>
-                @*güncelleme butonu*@
+                @*@güncelleme butonu@*@
             </tr>
         }
     </tbody>
 </table>
 
 <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-    Yeni Kategori Ekle
-</button>    @*her sayfada modal buton ekle*@
+    @Labels.AddCategory
+</button>    @*@her sayfada modal buton ekle@*@
 
 <!-- EKLEME MODAL -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="addModalLabel">Kategori Ekle</h4>
+                <h4 class="modal-title" id="addModalLabel">@Labels.AddModalTitle</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="addCategoryForm">
                     <div class="form-group">
-                        <label>Kategori Adı</label>
+                        <label>@Labels.CategoryName</label>
                         <input type="text" name="KATEGORIAD" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label>Kategori Adı (İngilizce)</label>
+                        <label>@Labels.CategoryNameEN</label>
                         <input type="text" name="KATEGORI_EN" class="form-control" required />
                     </div>
-                    <button type="submit" class="btn btn-primary">Ekle</button>
+                    <button type="submit" class="btn btn-primary">@Labels.AddButtonText</button>
                 </form>
             </div>
         </div>
@@ -69,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Kategori Güncelle</h4>
+                <h4 class="modal-title">@Labels.UpdateModalTitle</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -77,14 +78,14 @@
                     <input type="hidden" id="KATEGORIID" name="KATEGORIID" />
 
                     <div class="form-group">
-                        <label>Kategori Adı</label>
+                        <label>@Labels.CategoryName</label>
                         <input type="text" id="KATEGORIAD" name="KATEGORIAD" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>İngilizce Adı</label>
+                        <label>@Labels.CategoryNameEN</label>
                         <input type="text" id="KATEGORI_EN" name="KATEGORI_EN" class="form-control" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <button type="submit" class="btn btn-primary">@Labels.UpdateButtonText</button>
                 </form>
             </div>
         </div>
@@ -94,6 +95,37 @@
 
 
 <script>
+
+    var kullaniciGirisYapmisMi = @((Session["KULLANICI"] != null).ToString().ToLower());
+
+    $(document).ready(function () {
+        // Sil butonu
+        $(".btn-delete").click(function (e) {
+            if (!kullaniciGirisYapmisMi) {
+                e.preventDefault();
+                window.location.href = "/Login/Index";
+            }
+        });
+
+        // Güncelle butonu
+        $(".btn-update").click(function (e) {
+            if (!kullaniciGirisYapmisMi) {
+                e.preventDefault();
+                window.location.href = "/Login/Index";
+            }
+        });
+
+        // Ekle modal butonu
+        $("button[data-target='#addModal']").click(function (e) {
+            if (!kullaniciGirisYapmisMi) {
+                e.preventDefault();
+                window.location.href = "/Login/Index";
+            }
+        });
+    });
+
+    //yukarıdaki kod bloğunun tamamı kullanıcı erişimini engellek için yapılmıştır kullanıcı giriş yapmadan kategori ekleme ,silme ve güncelleme işlemi yapamaz.
+
     $("#addCategoryForm").submit(function (e) {
         e.preventDefault();
 
@@ -119,7 +151,7 @@
             }
         });
     });
-    @*burda ekleme işlemi yapıyoruz*@
+    @*@burda ekleme işlemi yapıyoruz@*@
 
 
     $(document).on("click", ".btn-update", function () {
@@ -137,7 +169,7 @@
             }
         });
     });
-    @*burda güncelleme işlemi yapılırken verileri inputlara çekiyor*@
+    @*@burda güncelleme işlemi yapılırken verileri inputlara çekiyor@*@
 
     $("#updateCategoryForm").submit(function (e) {
         e.preventDefault();
@@ -164,5 +196,3 @@
     });
     @* Formu Submit Edince Güncelleme Yapsın(güncelleme işlemini gerçekleştiriyor*@
 </script>
-
-

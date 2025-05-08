@@ -13,6 +13,12 @@ namespace MvcProje.Controllers
         MvcStokEntities db = new MvcStokEntities();
         public ActionResult Index()
         {
+            if (Session["KULLANICI"] == null)  // Eğer giriş yapılmamışsa
+            {
+                return RedirectToAction("Index", "Login"); // Login sayfasına yönlendir
+            }
+            //yukarıdaki kodları kullanıcıyı kısıtlamak için yaptım giriş yapılmamışsa sayfayı görememez
+
             var degerler = db.TBLMUSTERILER.ToList();
             return View(degerler);
         }

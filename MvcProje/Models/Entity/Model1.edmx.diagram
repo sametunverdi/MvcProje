@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="MvcStokModel.TBLMUSTERILER" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MvcStokModel.TBLURUNLER" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="MvcStokModel.FK_TBLURUNLER_TBLKATEGORILER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MvcStokModel.TBLKULLANICILAR" Width="1.5" PointX="5.25" PointY="1.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

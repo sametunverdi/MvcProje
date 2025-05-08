@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    var kullanici = Session["KULLANICI"];
+}
+@*bunu kullanıcı var mı yok mu diye yaptık sebebi ise giriş yapınca giriş yap butonu çıkış yap butanuna dönüyor*@
+
 @{
     Layout = null;
 }
@@ -29,9 +33,27 @@
                 <li><a href="/Kategori/Index/">Kategoriler</a></li>
                 <li><a href="/Urun/Index/">Ürünler</a></li>
                 <li><a href="/Musteriler/Index/">Müşteriler</a></li>
-
             </ul>
+            <form action="/Dil/Degistir" method="get" style="margin-right: 15px;">
+                <select name="lang" onchange="this.form.submit();" class="form-control" style="display:inline-block; width:auto;">
+                    <option value="tr" @(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "tr" ? "selected" : "")>Türkçe</option>
+                    <option value="en" @(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en" ? "selected" : "")>English</option>
+                </select>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                @if (kullanici != null)
+                {
+                    <li><a href="/Login/Logout"><span class="glyphicon glyphicon-log-out"></span> Çıkış Yap</a></li>
+                }
+                else
+                {
+                    <li><a href="/Login/Index"><span class="glyphicon glyphicon-log-in"></span> Giriş Yap</a></li>
+                }
+            </ul>
+            @*yukarıdaki ul tagları login işlemi içindir*@
         </div>
+
     </nav>
 
     <div class="container">
