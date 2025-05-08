@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AddButtonText" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="AddCategory" xml:space="preserve">
     <value>Add New Category</value>
   </data>
+  <data name="AddCustomer" xml:space="preserve">
+    <value>Add Customer</value>
+  </data>
   <data name="AddModalTitle" xml:space="preserve">
     <value>Add Category</value>
+  </data>
+  <data name="AddNewProduct" xml:space="preserve">
+    <value>Add New Product</value>
+  </data>
+  <data name="AddProductTitle" xml:space="preserve">
+    <value>Add Product</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
   </data>
   <data name="CategoryId" xml:space="preserve">
     <value>CATEGORY ID</value>
@@ -134,6 +152,15 @@
   </data>
   <data name="CategoryNameEN" xml:space="preserve">
     <value>Category Name (English)</value>
+  </data>
+  <data name="CustomerId" xml:space="preserve">
+    <value>CUSTOMER ID</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>CUSTOMER NAME</value>
+  </data>
+  <data name="CustomerSurname" xml:space="preserve">
+    <value>CUSTOMER SURNAME</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>DELETE</value>
@@ -150,17 +177,41 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ProductID" xml:space="preserve">
+    <value>Product ID</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="ProductTittle" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Categories</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>UPDATE</value>
   </data>
+  <data name="UpdateBtn" xml:space="preserve">
+    <value>Update</value>
+  </data>
   <data name="UpdateButtonText" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="UpdateCustomer" xml:space="preserve">
+    <value>Update Customer</value>
+  </data>
   <data name="UpdateModalTitle" xml:space="preserve">
     <value>Update Category</value>
+  </data>
+  <data name="UpdateProductTitle" xml:space="preserve">
+    <value>Update Product</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

@@ -63,6 +63,15 @@ namespace MvcProje.App_GlobalResources {
         /// <summary>
         ///   Looks up a localized string similar to Ekle.
         /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ekle.
+        /// </summary>
         public static string AddButtonText {
             get {
                 return ResourceManager.GetString("AddButtonText", resourceCulture);
@@ -79,11 +88,56 @@ namespace MvcProje.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Müşteri Ekle.
+        /// </summary>
+        public static string AddCustomer {
+            get {
+                return ResourceManager.GetString("AddCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kategori Ekle.
         /// </summary>
         public static string AddModalTitle {
             get {
                 return ResourceManager.GetString("AddModalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yeni Ürün Ekle.
+        /// </summary>
+        public static string AddNewProduct {
+            get {
+                return ResourceManager.GetString("AddNewProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürün Ekle.
+        /// </summary>
+        public static string AddProductTitle {
+            get {
+                return ResourceManager.GetString("AddProductTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marka.
+        /// </summary>
+        public static string Brand {
+            get {
+                return ResourceManager.GetString("Brand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kategori.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
             }
         }
         
@@ -111,6 +165,33 @@ namespace MvcProje.App_GlobalResources {
         public static string CategoryNameEN {
             get {
                 return ResourceManager.GetString("CategoryNameEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MÜŞTERİ ID.
+        /// </summary>
+        public static string CustomerId {
+            get {
+                return ResourceManager.GetString("CustomerId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MÜŞTERİ ADI.
+        /// </summary>
+        public static string CustomerName {
+            get {
+                return ResourceManager.GetString("CustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MÜŞTERİ SOYADI.
+        /// </summary>
+        public static string CustomerSurname {
+            get {
+                return ResourceManager.GetString("CustomerSurname", resourceCulture);
             }
         }
         
@@ -160,6 +241,51 @@ namespace MvcProje.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fiyat.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürün ID.
+        /// </summary>
+        public static string ProductID {
+            get {
+                return ResourceManager.GetString("ProductID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürün Adı.
+        /// </summary>
+        public static string ProductName {
+            get {
+                return ResourceManager.GetString("ProductName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürünler.
+        /// </summary>
+        public static string ProductTittle {
+            get {
+                return ResourceManager.GetString("ProductTittle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stok.
+        /// </summary>
+        public static string Stock {
+            get {
+                return ResourceManager.GetString("Stock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kategoriler.
         /// </summary>
         public static string Title {
@@ -187,11 +313,29 @@ namespace MvcProje.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Müşteri Güncelle.
+        /// </summary>
+        public static string UpdateCustomer {
+            get {
+                return ResourceManager.GetString("UpdateCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kategori Güncelle.
         /// </summary>
         public static string UpdateModalTitle {
             get {
                 return ResourceManager.GetString("UpdateModalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürün Güncelle.
+        /// </summary>
+        public static string UpdateProductTitle {
+            get {
+                return ResourceManager.GetString("UpdateProductTitle", resourceCulture);
             }
         }
         

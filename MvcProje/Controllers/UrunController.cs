@@ -14,6 +14,7 @@ namespace MvcProje.Controllers
         MvcStokEntities db = new MvcStokEntities();
         public ActionResult Index()
         {
+          
             if (Session["KULLANICI"] == null)  // Eğer giriş yapılmamışsa
             {
                 return RedirectToAction("Index", "Login"); // Login sayfasına yönlendir

@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
   <data name="AddButtonText" xml:space="preserve">
     <value>Ekle</value>
   </data>
   <data name="AddCategory" xml:space="preserve">
     <value>Yeni Kategori Ekle</value>
   </data>
+  <data name="AddCustomer" xml:space="preserve">
+    <value>Müşteri Ekle</value>
+  </data>
   <data name="AddModalTitle" xml:space="preserve">
     <value>Kategori Ekle</value>
+  </data>
+  <data name="AddNewProduct" xml:space="preserve">
+    <value>Yeni Ürün Ekle</value>
+  </data>
+  <data name="AddProductTitle" xml:space="preserve">
+    <value>Ürün Ekle</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Marka</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
   </data>
   <data name="CategoryId" xml:space="preserve">
     <value>KATEGORİ ID</value>
@@ -134,6 +152,15 @@
   </data>
   <data name="CategoryNameEN" xml:space="preserve">
     <value>Kategori Adı (İngilizce)</value>
+  </data>
+  <data name="CustomerId" xml:space="preserve">
+    <value>MÜŞTERİ ID</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>MÜŞTERİ ADI</value>
+  </data>
+  <data name="CustomerSurname" xml:space="preserve">
+    <value>MÜŞTERİ SOYADI</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>SİL</value>
@@ -150,6 +177,21 @@
   <data name="Password" xml:space="preserve">
     <value>Şifre</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Fiyat</value>
+  </data>
+  <data name="ProductID" xml:space="preserve">
+    <value>Ürün ID</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Ürün Adı</value>
+  </data>
+  <data name="ProductTittle" xml:space="preserve">
+    <value>Ürünler</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stok</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Kategoriler</value>
   </data>
@@ -159,8 +201,14 @@
   <data name="UpdateButtonText" xml:space="preserve">
     <value>Güncelle</value>
   </data>
+  <data name="UpdateCustomer" xml:space="preserve">
+    <value>Müşteri Güncelle</value>
+  </data>
   <data name="UpdateModalTitle" xml:space="preserve">
     <value>Kategori Güncelle</value>
+  </data>
+  <data name="UpdateProductTitle" xml:space="preserve">
+    <value>Ürün Güncelle</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Kullanıcı Adı</value>

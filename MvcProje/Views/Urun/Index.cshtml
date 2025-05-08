@@ -1,21 +1,23 @@
 ﻿@using MvcProje.Models.Entity
 @model List<TBLURUNLER>
 
+@using Resources
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Labels.Products";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <table class="table table-bordered">
     <tr>
-        <th>ÜRÜN ID</th>
-        <th>ÜRÜN AD</th>
-        <th>MARKASI</th>
-        <th>KATEGORİ</th>
-        <th>FİYAT</th>
-        <th>STOK</th>
-        <th>SİL</th>
-        <th>GÜNCELLE</th>
+        <th>@Labels.ProductID</th>
+        <th>@Labels.ProductName</th>
+        <th>@Labels.Brand</th>
+        <th>@Labels.Category</th>
+        <th>@Labels.Price</th>
+        <th>@Labels.Stock</th>
+        <th>@Labels.Delete</th>
+        <th>@Labels.Update</th>
     </tr>
     <tbody>
         @foreach (var urn in Model)
@@ -28,11 +30,11 @@
                 <td>@urn.FIYAT</td>
                 <td>@urn.STOK</td>
                 <td>
-                    <a href="/URUN/SIL/@urn.URUNID" class="btn btn-danger btn-delete">Sil</a>
+                    <a href="/URUN/SIL/@urn.URUNID" class="btn btn-danger btn-delete">@Labels.Delete</a>
                 </td>
                 @*sweetalert yapmak için mainlayoutten burdan çekiyorum*@
                 <td>
-                    <a href="#" class="btn btn-success btn-update" data-id="@urn.URUNID">Güncelle</a>
+                    <a href="#" class="btn btn-success btn-update" data-id="@urn.URUNID">@Labels.UpdateProductTitle</a>
                 </td>
                 @*güncelleme butonu*@
             </tr>
@@ -41,7 +43,7 @@
 </table>
 
 <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-    Yeni Ürün Ekle
+    @Labels.AddNewProduct
 </button>    @*her sayfada modal buton ekle*@
 
 <!-- EKLEME MODAL -->
@@ -49,32 +51,32 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="addModalLabel">Ürün Ekle</h4>
+                <h4 class="modal-title" id="addModalLabel">@Labels.AddProductTitle</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="addProductForm">
                     <div class="form-group">
-                        <label>Ürün Adı</label>
+                        <label>@Labels.ProductName</label>
                         <input type="text" name="URUNAD" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label>Marka</label>
+                        <label>@Labels.Brand</label>
                         <input type="text" name="MARKA" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label>Ürün Kategori ID</label>
+                        <label>@Labels.CategoryId</label>
                         <input type="text" name="URUNKATEGORI" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label>Fiyat</label>
+                        <label>@Labels.Price</label>
                         <input type="text" name="FIYAT" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label>Stok</label>
+                        <label>@Labels.Stock</label>
                         <input type="text" name="STOK" class="form-control" required />
                     </div>
-                    <button type="submit" class="btn btn-primary">Ekle</button>
+                    <button type="submit" class="btn btn-primary">@Labels.AddButtonText</button>
                 </form>
             </div>
         </div>
@@ -87,33 +89,33 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Kategori Güncelle</h4>
+                <h4 class="modal-title">@Labels.UpdateProductTitle</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="updateProductForm">
                     <input type="hidden" id="URUNID" name="URUNID" />
                     <div class="form-group">
-                        <label>Ürün Adı</label>
+                        <label>@Labels.ProductName</label>
                         <input type="text" id="URUNAD" name="URUNAD" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Marka</label>
+                        <label>@Labels.Brand</label>
                         <input type="text" id="MARKA" name="MARKA" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Ürün Kategori ID</label>
+                        <label>@Labels.CategoryId</label>
                         <input type="text" id="URUNKATEGORI" name="URUNKATEGORI" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Fiyat</label>
+                        <label>@Labels.Price</label>
                         <input type="text" id="FIYAT" name="FIYAT" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Stok</label>
+                        <label>@Labels.Stock</label>
                         <input type="text" id="STOK" name="STOK" class="form-control" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <button type="submit" class="btn btn-primary">@Labels.UpdateProductTitle</button>
                 </form>
             </div>
         </div>
