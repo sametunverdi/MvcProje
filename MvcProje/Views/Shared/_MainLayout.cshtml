@@ -37,14 +37,17 @@
                 <li><a href="/Urun/Index/">@Labels.Products</a></li>
                 <li><a href="/Musteriler/Index/">@Labels.Customers</a></li>
             </ul>
-            <form action="/Dil/Degistir" method="get" style="margin-right: 15px;">
-                <select name="lang" onchange="this.form.submit();" class="form-control" style="display:inline-block; width:auto;">
-                    <option value="tr" @(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "tr" ? "selected" : "")>Türkçe</option>
-                    <option value="en" @(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en" ? "selected" : "")>English</option>
-                </select>
-            </form>
-
+          
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/Dil/Degistir" method="get" class="navbar-form" style="padding-top: 8px;">
+                        <select name="lang" onchange="this.form.submit();" class="form-control">
+                            <option value="tr" @(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "tr" ? "selected" : "")>Türkçe</option>
+                            <option value="en" @(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en" ? "selected" : "")>English</option>
+                        </select>
+                    </form>
+                </li>
+
                 @if (kullanici != null)
                 {
                     <li><a href="/Login/Logout"><span class="glyphicon glyphicon-log-out"></span> @Labels.Logout</a></li>

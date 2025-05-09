@@ -14,7 +14,14 @@ namespace MvcProje.Controllers
         MvcStokEntities db = new MvcStokEntities();
         public ActionResult Index()
         {
-          
+
+            // Kategori listesini ViewBag'e ata
+            ViewBag.Kategoriler = db.TBLKATEGORILER.Select(x => new SelectListItem
+            {
+                Text = x.KATEGORIAD,
+                Value = x.KATEGORIID.ToString()
+            }).ToList();
+
             if (Session["KULLANICI"] == null)  // Eğer giriş yapılmamışsa
             {
                 return RedirectToAction("Index", "Login"); // Login sayfasına yönlendir
@@ -23,6 +30,8 @@ namespace MvcProje.Controllers
 
             var degerler = db.TBLURUNLER.ToList();
             return View(degerler);
+
+
         }
 
         [HttpPost]
@@ -89,5 +98,16 @@ namespace MvcProje.Controllers
             return Json(new { success = false });
         }
         //musteri ve soy isimlerini  güncelleme işlemi yapıyoruz 
+
+        private void KategorileriGetir()
+        {
+            ViewBag.Kategoriler = db.TBLKATEGORILER
+                .Select(k => new SelectListItem
+                {
+                    Text = k.KATEGORIAD,
+                    Value = k.KATEGORIID.ToString()
+                }).ToList();
+        }
+
     }
 }
