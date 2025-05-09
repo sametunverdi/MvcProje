@@ -3,11 +3,10 @@
 @*yukarıdakileri tanımlaman lazım*@
 @using Resources
 
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
-
+    bool isAuthenticated = Session["KULLANICI"] != null;
 }
 
 <table class="table table-bordered">
@@ -25,11 +24,13 @@
                 <td>@ktgr.KATEGORIAD</td>
 
                 <td>
-                    <a href="/KATEGORI/SIL/@ktgr.KATEGORIID" class="btn btn-danger btn-delete">@Labels.Delete</a>
+                    <a href="javascript:void(0)" class="btn btn-danger btn-delete" data-auth="true" data-id="@ktgr.KATEGORIID">
+                        @Labels.Delete
+                    </a>
                 </td>
                 @*@sweetalert yapmak için mainlayoutten burdan çekiyorum@*@
                 <td>
-                    <a href="#" class="btn btn-success btn-update" data-id="@ktgr.KATEGORIID">@Labels.Update</a>
+                    <a href="#" class="btn btn-success btn-update" data-id="@ktgr.KATEGORIID" data-auth="true">@Labels.Update</a>
                 </td>
                 @*@güncelleme butonu@*@
             </tr>
@@ -37,7 +38,8 @@
     </tbody>
 </table>
 
-<button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+<!-- butonda data-toggle/data-target kaldırıldı, manuel açacağız -->
+<button id="addCategoryButton" class="btn btn-primary" data-auth="true">
     @Labels.AddCategory
 </button>    @*@her sayfada modal buton ekle@*@
 
@@ -66,7 +68,6 @@
     </div>
 </div>
 
-
 <!-- Güncelleme Modal -->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel">
     <div class="modal-dialog" role="document">
@@ -94,107 +95,149 @@
     </div>
 </div>
 
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-
     var kullaniciGirisYapmisMi = @((Session["KULLANICI"] != null).ToString().ToLower());
 
     $(document).ready(function () {
         // Sil butonu
         $(".btn-delete").click(function (e) {
+            var id = $(this).data("id");
             if (!kullaniciGirisYapmisMi) {
                 e.preventDefault();
-                window.location.href = "/Login/Index";
+                Swal.fire({
+                    title: 'Giriş yapmalısınız!',
+                    text: 'Lütfen giriş yapın.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Hayır'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Login/Index";
+                    }
+                });
+            } else {
+                // Silme işlemi yapılacak
+                $.ajax({
+                    url: '/Kategori/Sil/' + id,
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            Swal.fire('Hata', 'Silme işlemi başarısız.', 'error');
+                        }
+                    }
+                });
             }
         });
 
         // Güncelle butonu
         $(".btn-update").click(function (e) {
+            var id = $(this).data("id");
             if (!kullaniciGirisYapmisMi) {
                 e.preventDefault();
-                window.location.href = "/Login/Index";
+                Swal.fire({
+                    title: 'Giriş yapmalısınız!',
+                    text: 'Lütfen giriş yapın.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Hayır'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Login/Index";
+                    }
+                });
+            } else {
+                // Güncelleme modalını açmak için AJAX çağrısı yapılacak
+                $.ajax({
+                    url: '/Kategori/KategoriGetir',
+                    type: 'GET',
+                    data: { id: id },
+                    success: function (data) {
+                        $("#KATEGORIID").val(data.KATEGORIID);
+                        $("#KATEGORIAD").val(data.KATEGORIAD);
+                        $("#KATEGORI_EN").val(data.KATEGORI_EN);
+                        $("#updateModal").modal("show");
+                    }
+                });
             }
         });
 
-        // Ekle modal butonu
-        $("button[data-target='#addModal']").click(function (e) {
+        // Kategori Ekle Butonu
+        $("#addCategoryButton").click(function (e) {
             if (!kullaniciGirisYapmisMi) {
-                e.preventDefault();
-                window.location.href = "/Login/Index";
+                e.preventDefault(); // Modalın açılmasını engelle
+                Swal.fire({
+                    title: 'Giriş yapmalısınız!',
+                    text: 'Lütfen giriş yapın.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Hayır'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Login/Index";
+                    }
+                });
+            } else {
+                // Giriş yapılmışsa modalı manuel aç
+                $("#addModal").modal("show");
             }
         });
-    });
 
-    //yukarıdaki kod bloğunun tamamı kullanıcı erişimini engellek için yapılmıştır kullanıcı giriş yapmadan kategori ekleme ,silme ve güncelleme işlemi yapamaz.
+        // Kategori ekleme işlemi
+        $("#addCategoryForm").submit(function (e) {
+            e.preventDefault();
 
-    $("#addCategoryForm").submit(function (e) {
-        e.preventDefault();
+            var formData = {
+                KATEGORIAD: $("input[name='KATEGORIAD']").val(),
+                KATEGORI_EN: $("input[name='KATEGORI_EN']").val(),
+            };
 
-        var formData = {
-            KATEGORIAD: $("input[name='KATEGORIAD']").val(),
-            KATEGORI_EN: $("input[name='KATEGORI_EN']").val(),
-        };
-
-        $.ajax({
-            url: '/Kategori/KategoriEkle',
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                if (response.success) {
-                    $("#addModal").modal('hide');
-                    location.reload();
-                } else {
-                    alert("Ekleme başarısız.");
+            $.ajax({
+                url: '/Kategori/KategoriEkle',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        $("#addModal").modal('hide');
+                        location.reload();
+                    } else {
+                        Swal.fire('Hata', 'Kategori eklenemedi.', 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Hata', 'Bir sorun oluştu.', 'error');
                 }
-            },
-            error: function () {
-                alert("Hata oluştu.");
-            }
+            });
         });
-    });
-    @*@burda ekleme işlemi yapıyoruz@*@
 
+        // Güncelleme işlemi
+        $("#updateCategoryForm").submit(function (e) {
+            e.preventDefault();
 
-    $(document).on("click", ".btn-update", function () {
-        var id = $(this).data("id");
+            var formData = {
+                KATEGORIID: $("#KATEGORIID").val(),
+                KATEGORIAD: $("#KATEGORIAD").val(),
+                KATEGORI_EN: $("#KATEGORI_EN").val(),
+            };
 
-        $.ajax({
-            url: '/Kategori/KategoriGetir',
-            type: 'GET',
-            data: { id: id },
-            success: function (data) {
-                $("#KATEGORIID").val(data.KATEGORIID);
-                $("#KATEGORIAD").val(data.KATEGORIAD);
-                $("#KATEGORI_EN").val(data.KATEGORI_EN);
-                $("#updateModal").modal("show");
-            }
-        });
-    });
-    @*@burda güncelleme işlemi yapılırken verileri inputlara çekiyor@*@
-
-    $("#updateCategoryForm").submit(function (e) {
-        e.preventDefault();
-
-        var formData = {
-            KATEGORIID: $("#KATEGORIID").val(),
-            KATEGORIAD: $("#KATEGORIAD").val(),
-            KATEGORI_EN: $("#KATEGORI_EN").val(),
-        };
-
-        $.ajax({
-            url: '/Kategori/KategoriGuncelle',
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                if (response.success) {
-                    $("#updateModal").modal('hide');
-                    location.reload();
-                } else {
-                    alert("Güncelleme başarısız.");
+            $.ajax({
+                url: '/Kategori/KategoriGuncelle',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        $("#updateModal").modal('hide');
+                        location.reload();
+                    } else {
+                        Swal.fire('Hata', 'Güncelleme başarısız.', 'error');
+                    }
                 }
-            }
+            });
         });
     });
-    @* Formu Submit Edince Güncelleme Yapsın(güncelleme işlemini gerçekleştiriyor*@
 </script>
